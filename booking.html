@@ -171,6 +171,14 @@
       .booking-body { padding: 60px 24px; }
       .booking-layout { grid-template-columns: 1fr; gap: 48px; }
     }
+  
+.ref-upload { margin-top: 8px; }
+.ref-upload-label { display: inline-block; padding: 8px 16px; background: transparent; border: 1px dashed rgba(255,255,255,0.15); color: var(--dim, #999); font-size: 0.8rem; border-radius: 6px; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+.ref-upload-label:hover { border-color: var(--gold); color: var(--gold); }
+.ref-previews { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.ref-preview { position: relative; width: 64px; height: 64px; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+.ref-preview img { width: 100%; height: 100%; object-fit: cover; }
+.ref-preview-remove { position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; background: rgba(0,0,0,0.7); color: #fff; border: none; border-radius: 50%; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
@@ -231,10 +239,25 @@
       </div>
       <div class="form-panel">
         <h2 class="fade-up" data-en="Send an Inquiry" data-es="Enviar una Consulta">Send an Inquiry</h2>
-        <div class="fade-up" style="text-align:center;padding:48px 32px;border:1px solid var(--border);">
-          <p style="color:var(--dim);margin-bottom:24px;" data-en="Send a DM on Instagram to start your project." data-es="Env&#xed;a un DM en Instagram para comenzar tu proyecto.">Send a DM on Instagram to start your project.</p>
-          <a href="https://www.instagram.com/yesytattoo" target="_blank" rel="noopener" class="btn-gold" data-en="Message on Instagram" data-es="Mensaje en Instagram">Message on Instagram</a>
-        </div>
+        <form class="fade-up" onsubmit="submitBooking(event);return false;" style="display:flex;flex-direction:column;gap:16px;">
+  <div class="form-group"><label data-en="Name" data-es="Nombre">Name</label><input type="text" id="b-name" required placeholder="Your full name"></div>
+  <div class="form-group"><label data-en="Email" data-es="Correo">Email</label><input type="email" id="b-email" required placeholder="your@email.com"></div>
+  <div class="form-group"><label data-en="Phone" data-es="Tel&#xe9;fono">Phone</label><input type="tel" id="b-phone" placeholder="(555) 000-0000"></div>
+  <div class="form-group"><label data-en="Describe Your Idea" data-es="Describe Tu Idea">Describe Your Idea</label><textarea id="b-message" required placeholder="Style, placement, size, and any details about your piece..." rows="5"></textarea></div>
+  <div class="form-group">
+    <label>Reference Photos <span style="font-weight:300;color:var(--dim);font-size:0.8rem;">(optional, up to 5)</span></label>
+    <div class="ref-upload">
+      <label class="ref-upload-label" for="ref-photos">+ Add Photos</label>
+      <input type="file" id="ref-photos" accept="image/*" multiple style="display:none;" onchange="handleRefPhotos(this)">
+    </div>
+    <div id="ref-previews" class="ref-previews"></div>
+  </div>
+  <button type="submit" class="btn-submit" data-en="Submit Request" data-es="Enviar Solicitud">Submit Request</button>
+</form>
+<div id="b-success" style="display:none;text-align:center;padding:32px;color:var(--gold);">
+  <p style="font-size:1.2rem;margin-bottom:8px;">✓</p>
+  <p data-en="Your inquiry was sent! We'll be in touch soon." data-es="&#xa1;Tu consulta fue enviada! Nos pondremos en contacto pronto.">Your inquiry was sent! We'll be in touch soon.</p>
+</div>
       </div>
     </div>
   </div>
@@ -254,6 +277,60 @@
   </footer>
   
   <script>
+    var refPhotos = [];
+function handleRefPhotos(input) {
+  var files = Array.from(input.files || []);
+  files.slice(0, 5 - refPhotos.length).forEach(function(file) {
+    if (file.size > 10*1024*1024) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        var canvas = document.createElement('canvas');
+        var maxDim = 800, w = img.width, h = img.height;
+        if (w > maxDim || h > maxDim) { if (w > h) { h = Math.round(h*maxDim/w); w = maxDim; } else { w = Math.round(w*maxDim/h); h = maxDim; } }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        refPhotos.push(canvas.toDataURL('image/jpeg', 0.7));
+        renderRefPreviews();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value = '';
+}
+function renderRefPreviews() {
+  var c = document.getElementById('ref-previews'); c.innerHTML = '';
+  refPhotos.forEach(function(p, i) {
+    c.innerHTML += '<div class="ref-preview"><img src="'+p+'" alt="Ref"><button class="ref-preview-remove" onclick="refPhotos.splice('+i+',1);renderRefPreviews();">&times;</button></div>';
+  });
+  var label = document.querySelector('.ref-upload-label');
+  if (label) label.style.display = refPhotos.length >= 5 ? 'none' : '';
+}
+function submitBooking(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('button[type="submit"]');
+  var orig = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Sending...';
+  var name = document.getElementById('b-name').value.trim();
+  var email = document.getElementById('b-email').value.trim();
+  var phone = document.getElementById('b-phone').value.trim();
+  var message = document.getElementById('b-message').value.trim();
+  if (!name || !email || !message) { btn.disabled = false; btn.textContent = orig; return; }
+  fetch('https://curious-lemming-262.convex.site/api/booking/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ slug: 'yesytattoo', name: name, email: email, phone: phone || undefined, message: message, referencePhotos: refPhotos.length > 0 ? refPhotos : undefined })
+  }).then(function(r) {
+    if (!r.ok) throw new Error('fail');
+    e.target.style.display = 'none';
+    document.getElementById('b-success').style.display = 'block';
+  }).catch(function() {
+    btn.disabled = false; btn.textContent = orig;
+    alert('Something went wrong. Please try again.');
+  });
+}
     const LANG = { default: 'en', current: 'en' };
     function toggleLang() {
       LANG.current = LANG.current === 'es' ? 'en' : 'es';
