@@ -163,6 +163,13 @@
       .testimonials-body { padding: 60px 24px; }
       .placeholder-block { padding: 40px 24px; }
     }
+  
+    .testimonials-grid { display:grid; grid-template-columns:1fr; gap:24px; max-width:700px; margin:0 auto 48px; padding:0 24px; }
+    .testimonial-card { background:var(--charcoal); border:1px solid var(--border); border-radius:12px; padding:28px; }
+    .testimonial-stars { color:var(--gold); font-size:0.9rem; margin-bottom:12px; letter-spacing:2px; }
+    .testimonial-text { font-family:'Cormorant Garamond',Georgia,serif; font-size:1.1rem; font-style:italic; color:var(--white); line-height:1.6; margin-bottom:12px; }
+    .testimonial-author { color:var(--dim); font-size:0.8rem; letter-spacing:0.05em; text-transform:uppercase; }
+    @media(min-width:640px){ .testimonials-grid{grid-template-columns:1fr 1fr;} }
   </style>
 </head>
 <body>
@@ -204,6 +211,7 @@
     <div class="placeholder-block fade-up">
       <p data-en="Be the first to share your experience." data-es="S&#xe9; el primero en compartir tu experiencia.">Be the first to share your experience.</p>
       <small data-en="Use the form below &#x2193;" data-es="Usa el formulario de abajo &#x2193;">Use the form below &#x2193;</small>
+        <div id="testimonials-grid" class="testimonials-grid fade-up"></div>
     </div>
 
     <div class="share-section fade-up">
@@ -282,5 +290,28 @@ Instagram: " + ig + "
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
   </script>
+<script>
+(function(){
+  fetch('https://curious-lemming-262.convex.site/api/testimonials/approved?slug=yesytattoo')
+    .then(function(r){return r.json();})
+    .then(function(data){
+      var reviews=data.testimonials||[];
+      if(!reviews.length)return;
+      var grid=document.getElementById('testimonials-grid');
+      var ph=document.querySelector('.placeholder-block');
+      if(!ph)ph=document.querySelector('.testimonial-placeholder');
+      if(ph)ph.style.display='none';
+      reviews.forEach(function(r){
+        var stars='';for(var i=0;i<(r.rating||5);i++)stars+='\u2605 ';
+        var card=document.createElement('div');
+        card.className='testimonial-card fade-up visible';
+        card.innerHTML='<div class="testimonial-stars">'+stars+'</div>'
+          +'<p class="testimonial-text">\u201c'+r.reviewText.replace(/</g,'&lt;')+'\u201d</p>'
+          +'<span class="testimonial-author">\u2014 '+r.name.replace(/</g,'&lt;')+'</span>';
+        grid.appendChild(card);
+      });
+    }).catch(function(){});
+})();
+</script>
 </body>
 </html>
