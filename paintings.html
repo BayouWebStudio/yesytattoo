@@ -3,17 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About &#x2014; &#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f; | Tattoo Artist Houston, Texas</title>
-  <meta name="description" content="I'm &#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f;, a tattoo artist based in Houston, Texas.">
-  <link rel="canonical" href="https://bayouwebstudio.github.io/yesytattoo/about.html">
-  <meta property="og:title" content="About &#x2014; &#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f;">
-  <meta property="og:description" content="I'm &#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f;, a tattoo artist based in Houston, Texas.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/BayouWebStudio/yesytattoo/main/img/2.jpg">
-  <meta property="og:url" content="https://bayouwebstudio.github.io/yesytattoo/about.html">
+  <title>Paintings — ⚜️YESY TATTOO⚜️ | Houston, Texas</title>
+  <meta name="description" content="⚜️YESY TATTOO⚜️'s paintings and fine art. Canvas work from Houston, Texas.">
+  <link rel="canonical" href="https://yesytattoo.com/paintings.html">
+  <meta property="og:title" content="Paintings — ⚜️YESY TATTOO⚜️">
+  <meta property="og:description" content="⚜️YESY TATTOO⚜️'s paintings and fine art. Canvas work from Houston, Texas.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/BayouWebStudio/yesytattoo/main/img/tattoo_1.jpg">
+  <meta property="og:url" content="https://yesytattoo.com/paintings.html">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "⚜️YESY TATTOO⚜️",
+    "jobTitle": "Tattoo Artist & Painter",
+    "url": "https://yesytattoo.com/",
+    "sameAs": ["https://www.instagram.com/yesytattoo"],
+    "address": { "@type": "PostalAddress", "addressLocality": "Houston, Texas", "addressCountry": "US" }
+  }
+  </script>
   <style>
     
     :root {
@@ -98,17 +110,6 @@
     /* FADE-UP ANIMATIONS */
     .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
-    /* FOOTER */
-    footer {
-      background: var(--charcoal); padding: 48px 72px;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-logo { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.1rem; color: var(--dim); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { color: var(--dim); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy { color: var(--dim); font-size: 0.72rem; }
     /* SHARED */
     .section-label { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
     h2 {
@@ -123,56 +124,70 @@
       transition: opacity 0.2s;
     }
     .btn-gold:hover { opacity: 0.88; }
-    .btn-outline {
-      display: inline-block; border: 1px solid var(--border); color: var(--white);
-      text-decoration: none; font-size: 0.72rem; letter-spacing: 0.18em;
-      text-transform: uppercase; padding: 14px 36px;
-      transition: border-color 0.2s, color 0.2s;
+    /* FOOTER */
+    footer {
+      background: var(--charcoal); padding: 48px 72px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-logo { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.1rem; color: var(--dim); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--dim); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { color: var(--dim); font-size: 0.72rem; }
+    /* PAGE HERO */
+    .page-hero { padding: 140px 72px 64px; background: var(--charcoal); border-bottom: 1px solid var(--border); }
+    .page-eyebrow { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    h1 { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; }
+    /* GALLERY */
+    .gallery-body { padding: 72px 72px; max-width: 1400px; margin: 0 auto; }
+    .masonry-grid {
+      columns: 3; column-gap: 3px;
+    }
+    .masonry-item { break-inside: avoid; margin-bottom: 3px; overflow: hidden; }
+    .masonry-item img { width: 100%; display: block; filter: brightness(0.85); transition: filter 0.3s; }
+    .masonry-item:hover img { filter: brightness(1); }
+    .gallery-empty {
+      text-align: center; padding: 96px 24px; color: var(--dim);
+    }
+    .gallery-empty p {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.15rem; font-style: italic; margin-bottom: 8px;
+    }
+    .gallery-empty small { font-size: 0.78rem; letter-spacing: 0.08em; }
+    /* BOOKING CTA */
+    .booking-cta-section { padding: 72px; text-align: center; background: var(--charcoal); }
+    .booking-cta-section h2 { max-width: 500px; margin: 0 auto 16px; }
+    .booking-cta-section p { color: var(--dim); max-width: 400px; margin: 0 auto 32px; font-size: 0.92rem; }
     /* MOBILE */
     @media (max-width: 900px) {
       nav { padding: 18px 24px; } .nav-links { display: none; } .hamburger { display: block; }
+      .page-hero { padding: 120px 24px 48px; }
+      .gallery-body { padding: 48px 12px; }
+      .masonry-grid { columns: 2; }
+      .booking-cta-section { padding: 60px 24px; }
       footer { flex-direction: column; gap: 24px; padding: 40px 24px; text-align: center; }
     }
     @media (max-width: 600px) {
       footer { padding: 32px 20px; }
     }
-  
-    .page-hero { padding: 160px 72px 80px; background: var(--charcoal); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-    .page-hero-bg { position: absolute; inset: 0; background-image: url('img/2.jpg'); background-size: cover; background-position: center; filter: brightness(0.25); }
-    .page-hero-content { position: relative; z-index: 2; }
-    .page-eyebrow { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    h1 { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; }
-    .about-body { padding: 96px 72px; max-width: 1200px; margin: 0 auto; }
-    .about-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; align-items: start; }
-    .bio-section p { color: var(--dim); line-height: 1.9; margin-bottom: 28px; font-size: 1rem; }
-    .stats-section { position: sticky; top: 100px; }
-    .stat-card { border: 1px solid var(--border); padding: 32px; margin-bottom: 16px; text-align: center; }
-    .stat-big { font-family: 'Libre Baskerville', Georgia, serif; font-size: 3rem; font-weight: 300; color: var(--gold); }
-    .stat-small { font-size: 0.72rem; color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 8px; }
-    .specialty-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
-    .tag { border: 1px solid var(--border); color: var(--dim); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px; }
-    @media (max-width: 900px) {
-      .page-hero { padding: 120px 24px 60px; }
-      .about-body { padding: 60px 24px; }
-      .about-layout { grid-template-columns: 1fr; gap: 48px; }
-      .stats-section { position: static; }
+    @media (max-width: 480px) {
+      .masonry-grid { columns: 1; }
     }
   </style>
 </head>
 <body>
   
   <nav>
-    <a href="./index.html" class="nav-logo">&#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f;</a>
+    <a href="./index.html" class="nav-logo">⚜️YESY TATTOO⚜️</a>
     <ul class="nav-links">
       <li><a href="./index.html" 
         data-en="Home" data-es="Home">Home</a></li>
-      <li><a href="./about.html" class="active"
-        data-en="About" data-es="Sobre M&#xed;">About</a></li>
+      <li><a href="./about.html" 
+        data-en="About" data-es="Sobre Mí">About</a></li>
       <li><a href="./tattoos.html" 
         data-en="Tattoos" data-es="Tatuajes">Tattoos</a></li>
-      <li><a href="./paintings.html" 
+      <li><a href="./paintings.html" class="active"
         data-en="Paintings" data-es="Pinturas">Paintings</a></li>
       <li><a href="./booking.html" 
         data-en="Booking" data-es="Reservaciones">Booking</a></li>
@@ -186,7 +201,7 @@
   </nav>
   <div class="mobile-menu">
     <a href="./index.html" data-en="Home" data-es="Inicio">Home</a>
-    <a href="./about.html" data-en="About" data-es="Sobre M&#xed;">About</a>
+    <a href="./about.html" data-en="About" data-es="Sobre Mí">About</a>
     <a href="./tattoos.html" data-en="Tattoos" data-es="Tatuajes">Tattoos</a>
     <a href="./paintings.html" data-en="Paintings" data-es="Pinturas">Paintings</a>
     <a href="./booking.html" data-en="Booking" data-es="Reservaciones">Booking</a>
@@ -195,52 +210,30 @@
   <a href="./booking.html" class="book-float">Book</a>
 
   <section class="page-hero">
-    <div class="page-hero-bg"></div>
-    <div class="page-hero-content">
-      <p class="page-eyebrow fade-up" data-en="About" data-es="Sobre M&#xed;">About</p>
-      <h1 class="fade-up">&#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f;</h1>
-    </div>
+    <p class="page-eyebrow fade-up" data-en="Art" data-es="Arte">Art</p>
+    <h1 class="fade-up" data-en="Paintings" data-es="Pinturas">Paintings</h1>
   </section>
 
-  <div class="about-body">
-    <div class="about-layout">
-      <div class="bio-section">
-        <p class="fade-up">I'm &#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f;, a tattoo artist based in Houston, Texas.</p>
-        <p class="fade-up">My work reflects a deep passion for art and skin as canvas.</p>
-        <p class="fade-up">Every piece is unique, created with intention and care.</p>
-        <p class="fade-up">Get in touch to start your project.</p>
-        <div class="specialty-tags fade-up">
-          <span class="tag">Realism</span>
-          <span class="tag">Houston, Texas</span>
-          <span class="tag" data-en="Tattoo Artist" data-es="Artista de Tatuaje">Tattoo Artist</span>
-          <span class="tag" data-en="Custom Work" data-es="Trabajo Personalizado">Custom Work</span>
-        </div>
-        <a href="./booking.html" class="btn-gold" style="margin-top:48px;" data-en="Book a Session" data-es="Reservar Sesi&#xf3;n">Book a Session</a>
-      </div>
-      <div class="stats-section">
-        <div class="stat-card fade-up">
-          <div class="stat-big">2+</div>
-          <div class="stat-small" data-en="Years of Experience" data-es="A&#xf1;os de Experiencia">Years of Experience</div>
-        </div>
-        <div class="stat-card fade-up">
-          <div class="stat-big">145.5K</div>
-          <div class="stat-small" data-en="Instagram Followers" data-es="Seguidores en Instagram">Instagram Followers</div>
-        </div>
-        <div class="stat-card fade-up">
-          <div class="stat-big">Realism</div>
-          <div class="stat-small" data-en="Primary Style" data-es="Estilo Principal">Primary Style</div>
-        </div>
-        <div class="stat-card fade-up">
-          <div class="stat-big">Houston, Texas</div>
-          <div class="stat-small" data-en="Base City" data-es="Ciudad Base">Base City</div>
-        </div>
-      </div>
+  <div class="gallery-body">
+    <div class="masonry-grid" id="paintings-grid">
+      <!-- Paintings will be added here -->
+    </div>
+    <div class="gallery-empty fade-up" id="paintings-empty">
+      <p data-en="Paintings coming soon." data-es="Pinturas próximamente.">Paintings coming soon.</p>
+      <small data-en="New work being added — check back soon." data-es="Nuevo trabajo en camino — vuelve pronto.">New work being added — check back soon.</small>
     </div>
   </div>
 
+  <section class="booking-cta-section">
+    <p class="section-label fade-up" data-en="Book a Session" data-es="Reserva">Book a Session</p>
+    <h2 class="fade-up" data-en="Ready for Your Next Piece?" data-es="¿Listo para tu próxima pieza?">Ready for Your Next Piece?</h2>
+    <p class="fade-up" data-en="Let's bring your vision to life." data-es="Hagamos tu visión realidad.">Let's bring your vision to life.</p>
+    <a href="./booking.html" class="btn-gold fade-up" data-en="Book a Session" data-es="Reservar Sesión">Book a Session</a>
+  </section>
+
   
   <footer>
-    <div class="footer-logo">&#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f;</div>
+    <div class="footer-logo">⚜️YESY TATTOO⚜️</div>
     <div class="footer-links">
       <a href="./index.html">Home</a>
       <a href="./about.html">About</a>
@@ -250,7 +243,8 @@
       <a href="https://www.instagram.com/yesytattoo" target="_blank" rel="noopener">Instagram</a>
       
     </div>
-    <div class="footer-copy">&#xa9; 2026 &#x269c;&#xfe0f;YESY TATTOO&#x269c;&#xfe0f;</div>
+    <div class="footer-copy">© 2026 ⚜️YESY TATTOO⚜️</div>
+  <div style="text-align:center;padding:12px 0 0;margin-top:16px;border-top:1px solid rgba(255,255,255,0.06);"><a href="https://eternowebstudio.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.25);font-size:0.6rem;letter-spacing:0.12em;text-decoration:none;font-family:sans-serif;text-transform:uppercase;">Built by Eterno Web Studio</a></div>
   </footer>
   
   <script>
@@ -277,5 +271,16 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
   </script>
+<script>
+(function(){
+  try {
+    fetch('https://curious-lemming-262.convex.site/api/analytics/pageview', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ slug: 'yesytattoo', page: window.location.pathname })
+    }).catch(function(){});
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
